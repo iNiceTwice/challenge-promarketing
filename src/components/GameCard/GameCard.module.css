@@ -1,0 +1,9 @@
+.card boton[color="primary"],
+.card boton[color="accent"] {
+    background-color: rgba(251, 191, 36, 0.5)
+}
+
+.card boton[color="primary"]:active,
+.card boton[color="accent"]:active {
+    background-color: rgba(251, 191, 36, 1);
+}
