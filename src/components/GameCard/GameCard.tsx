@@ -1,30 +1,36 @@
 "use client"
 import { ReactNode, useState } from "react";
-import { GameCardBackground, GameCardHeading, GameCardBody, GameCardFooter } from "./"
+import { GameCardContainer, GameCardHeading, GameCardBody, GameCardFooter } from "./"
+import { Game } from "@/app/components/GamesList";
 
-const GameCard = () => {
+interface GameCard {
+    gameData: Game,
+}
+
+const GameCard = ({ gameData }:GameCard) => {
 
     const [ showInfo, setShowInfo ] = useState<Boolean>(false)
-
+    const { name, info, supplier, src, disabled } = gameData
+   
     const handleShowInfo = () => {
         setShowInfo(prevState => !prevState)
     }
 
     return (
         <>
-            <div className="relative h-[250px] w-[400px] rounded-lg lg:rounded-2xl overflow-hidden cursor-pointer">
+            <div className="relative min-h-[200px] h-[13vw] w-[20vw] min-w-[250px] rounded-lg lg:rounded-2xl overflow-hidden cursor-pointer">
                 {
                     showInfo ? 
-                    <GameCardBackground withInfo={ showInfo } thumbnail="https://cdn.wcbackoffice.com/casinoenchile/providers/pragmatic/normal/Buffalo_King.jpeg">
-                        <GameCardHeading showGameInfo={ handleShowInfo }/>
-                        <GameCardFooter info={{version:1, rtp:95}} gameName="Buffalo King" bonus={ true } />
-                    </GameCardBackground>
+                    <GameCardContainer withInfo={ showInfo } thumbnail={ src }>
+                        <GameCardHeading gameName={ name } supplier={ supplier } showGameInfo={ handleShowInfo }/>
+                        <GameCardFooter info={ info } gameName={ name } bonus={ info.moodBonus }/>
+                    </GameCardContainer>
                     :
-                    <GameCardBackground withInfo={ showInfo } thumbnail="https://cdn.wcbackoffice.com/casinoenchile/providers/pragmatic/normal/Buffalo_King.jpeg">
-                        <GameCardHeading showGameInfo={ handleShowInfo }/>
-                        <GameCardBody disabled={ false } />
-                        <GameCardFooter gameName="Buffalo King" bonus={ true } />
-                    </GameCardBackground>
+                    <GameCardContainer withInfo={ showInfo } thumbnail={ src }>
+                        <GameCardHeading gameName={ name } supplier={ supplier } showGameInfo={ handleShowInfo }/>
+                        <GameCardBody disabled={ disabled }/>
+                        <GameCardFooter gameName={ name } bonus={ info.moodBonus }/>
+                    </GameCardContainer>
                 }  
             </div>
         </>

@@ -1,7 +1,13 @@
 import Image from "next/image"
-import { IGameCard } from "."
+import { ReactNode } from "react"
 
-const GameCardBackground = ({ thumbnail, children, withInfo }:Pick<IGameCard, "thumbnail" | "children" | "withInfo">) => {
+interface GameCardContainer {
+    thumbnail: string,
+    children: ReactNode,
+    withInfo: Boolean
+}
+
+const GameCardContainer = ({ thumbnail, children, withInfo }:GameCardContainer) => {
 
     // this works to prevent the gradient background persist when it shows the game info
     const backgroundVariants = {    
@@ -14,9 +20,9 @@ const GameCardBackground = ({ thumbnail, children, withInfo }:Pick<IGameCard, "t
             <div className={ withInfo ? backgroundVariants.darkGradientOnInfo : backgroundVariants.darkGradientOnHover }>
                 { children }
             </div>
-            <Image className="relative z-0" fill loading="lazy" src={ thumbnail } alt="buffalo king"/>   
+            <Image className="relative z-0 object-center object-fill" fill loading="lazy" src={ thumbnail } alt="buffalo king"/>   
         </div>
     )
 }
 
-export default GameCardBackground
+export default GameCardContainer

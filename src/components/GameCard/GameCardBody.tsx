@@ -1,7 +1,11 @@
 import { Button } from "../Button";
 import styles from "./GameCard.module.css"
 
-const GameCardBody = ({ disabled }:{ disabled:Boolean }) => (
+interface GameCardBody {
+    disabled: Boolean
+}
+
+const GameCardBody = ({ disabled }:GameCardBody) => (
     <div className={`${ styles.card } hidden group-hover:flex items-center justify-center w-full h-full z-20`}>
         {
             disabled ?

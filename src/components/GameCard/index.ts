@@ -1,52 +1,45 @@
-import { ReactNode } from "react";
 import GameCard from "./GameCard";
-import GameCardBackground from "./GameCardBackground"
+import GameCardContainer from "./GameCardContainer"
 import GameCardHeading from "./GameCardHeading";
 import GameCardBody from "./GameCardBody";
 import GameCardFooter from "./GameCardFooter";
 
-export interface IGameCard {
-    gameName: string, 
-    thumbnail: string,
-    children: ReactNode,
-    withInfo: Boolean
-    bonus: Boolean, 
-    info?:{ 
-        version: number, 
-        rtp: number, 
-    }
-    showGameInfo: () => void,
+interface SupplierSizes {
+  md: string
+  sm?: string
 }
 
-export const suppliersSVG = {
-    EvoPlay:{
+interface SuppliersSVG {
+  [key: string]: {
+    sizes: SupplierSizes
+  };
+}
+
+export const suppliersSVG:SuppliersSVG = {
+    Evoplay:{
         sizes:{
-            lg:"/svg/evoplay-lg",
-            md:"/svg/evoplay-md",
-            sm:"/svg/evoplay-sm",
+            md:"/svg/evoplay-md.svg",
+            sm:"/svg/evoplay-sm.svg",
         }
     },
     PlayTech:{
         sizes:{
-            lg:"/svg/playtech-lg",
-            md:"/svg/playtech-md",
+            md:"/svg/playtech-md.svg",
         }
     },
     PragmaticPlay:{
         sizes:{
-            lg:"/svg/pragmatic-lg",
-            md:"/svg/pragmatic-md",
+            md:"/svg/pragmatic-md.svg",
         }
     },
     Spinomenal:{
         sizes:{
-            lg:"/svg/spinomenal-lg",
-            md:"/svg/spinomenal-md",
-            sm:"/svg/spinomenal-sm",
+            md:"/svg/spinomenal-md.svg",
+            sm:"/svg/spinomenal-sm.svg",
         }
     },
 }
 
 
 
-export { GameCard, GameCardBackground, GameCardHeading, GameCardBody, GameCardFooter }
+export { GameCard, GameCardContainer, GameCardHeading, GameCardBody, GameCardFooter }
